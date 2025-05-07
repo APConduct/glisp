@@ -1,5 +1,5 @@
 import gleam/io
 
-pub fn glisp_greet() -> Nil {
+pub fn main() -> Nil {
   io.println("Hello from glisp!")
 }
