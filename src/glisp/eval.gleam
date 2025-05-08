@@ -21,7 +21,7 @@ pub fn eval(expr: Expr, env: Env) -> Result(Expr, String) {
         [Atom("define"), Atom(name), value_expr] -> {
           eval(value_expr, env)
           |> result.map(fn(value) {
-            let new_env = environment.set(env, name, value)
+            let _new_env = environment.set(env, name, value)
             value
           })
         }
