@@ -4,7 +4,6 @@ import ast.{type Expr, Atom, List, Number}
 import gleam/int
 import gleam/list
 import gleam/result
-import gleam/string
 
 ///
 /// This function takes a list of string tokens and attempts to parse them

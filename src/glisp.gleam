@@ -1,5 +1,6 @@
 import gleam/io
+import repl
 
-pub fn glisp_greet() -> Nil {
-  io.println("Hello from glisp!")
+pub fn main() -> Nil {
+  repl.main_repl()
 }
