@@ -10,7 +10,12 @@ gleam add glisp@1
 import glisp
 
 pub fn main() -> Nil {
-  // TODO: An example of the project in use
+  // This starts the GLisp REPL which allows you to evaluate Lisp expressions
+  // Example expressions you can try:
+  // (+ 1 2 3)
+  // (define x 42)
+  // (if (> x 10) (* x 2) (/ x 2))
+  glisp.main()
 }
 ```
 
