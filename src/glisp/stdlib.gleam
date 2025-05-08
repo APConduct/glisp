@@ -77,7 +77,7 @@ fn multiply(args: List(Expr)) -> Result(Expr, String) {
       _ -> Error("Expected number in multiplication")
     }
   })
-  |> result.map(fn(nums) { Number(list.fold(nums, 0, fn(acc, n) { acc * n })) })
+  |> result.map(fn(nums) { Number(list.fold(nums, 1, fn(acc, n) { acc * n })) })
 }
 
 fn divide(args: List(Expr)) -> Result(Expr, String) {
