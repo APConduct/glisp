@@ -1,5 +1,5 @@
 name = "glisp"
-version = "1.0.0"
+version = "1.0.1"
 
 description = "A simple Lisp interpreter implemented in Gleam. Features a REPL, basic Lisp functionality including arithmetic operations, list manipulation, conditionals, and variable definitions."
 licences = ["Apache-2.0"]
