@@ -2,7 +2,7 @@ import gleam/io
 import gleam/result
 import gleam/string
 import glisp/ast
-import glisp/environment.{type Env}
+import glisp/environment
 import glisp/eval
 import glisp/parser
 import glisp/stdlib
