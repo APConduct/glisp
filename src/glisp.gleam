@@ -1,4 +1,4 @@
-import repl
+import glisp/repl
 
 /// Main entry point for the REPL application.
 /// This function initializes and runs the Read-Eval-Print Loop,

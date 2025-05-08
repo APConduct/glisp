@@ -1,9 +1,9 @@
 ////// Parses a list of tokens into an abstract syntax tree expression.
 
-import ast.{type Expr, Atom, List, Number}
 import gleam/int
 import gleam/list
 import gleam/result
+import glisp/ast.{type Expr, Atom, List, Number}
 
 /// This function takes a list of string tokens and attempts to parse them
 /// into a structured expression according to a simple Lisp-like syntax.

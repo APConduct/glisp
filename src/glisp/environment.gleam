@@ -1,7 +1,7 @@
 ////// A module for managing environments that map variable names to expressions.
 
-import ast.{type Expr}
 import gleam/dict
+import glisp/ast.{type Expr}
 
 /// Environments are used during evaluation to keep track of variable bindings
 /// and their corresponding values.

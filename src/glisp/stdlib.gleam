@@ -1,7 +1,7 @@
-import ast.{type Expr, Builtin, List, Number}
-import environment.{type Env}
 import gleam/list
 import gleam/result
+import glisp/ast.{type Expr, Builtin, List, Number}
+import glisp/environment.{type Env}
 
 /// Create a standard environment with built-in functions
 ///

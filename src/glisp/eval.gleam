@@ -1,7 +1,7 @@
-import ast.{type Expr, Atom, Builtin, List, Number, expr_to_string}
-import environment.{type Env}
 import gleam/list
 import gleam/result
+import glisp/ast.{type Expr, Atom, Builtin, List, Number, expr_to_string}
+import glisp/environment.{type Env}
 
 /// Evaluate an expression in the given environment
 ///

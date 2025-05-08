@@ -1,13 +1,13 @@
-import ast
-import environment
-import eval
 import gleam/io
 import gleam/result
 import gleam/string
+import glisp/ast
+import glisp/environment.{type Env}
+import glisp/eval
+import glisp/parser
+import glisp/stdlib
+import glisp/tokenizer
 import input
-import parser
-import stdlib
-import tokenizer
 
 /// Starts an interactive REPL (Read-Eval-Print Loop) for the GLisp interpreter.
 ///
