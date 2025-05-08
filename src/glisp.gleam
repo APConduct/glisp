@@ -1,4 +1,3 @@
-import gleam/io
 import repl
 
 pub fn main() -> Nil {

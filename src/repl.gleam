@@ -1,5 +1,5 @@
-import ast.{type Expr}
-import environment.{type Env}
+import ast
+import environment
 import eval
 import gleam/io
 import gleam/result

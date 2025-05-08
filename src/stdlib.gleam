@@ -20,6 +20,11 @@ pub fn standard_env() -> Env {
     |> environment.set("list", Builtin(make_list))
     |> environment.set("car", Builtin(car))
     |> environment.set("cdr", Builtin(cdr))
+    // More functions
+    |> environment.set("cons", Builtin(cons))
+    |> environment.set("length", Builtin(length))
+    |> environment.set("null?", Builtin(null))
+    |> environment.set("not", Builtin(not))
   env
 }
 
@@ -35,14 +40,27 @@ fn add(args: List(Expr)) -> Result(Expr, String) {
 }
 
 fn subtract(args: List(Expr)) -> Result(Expr, String) {
-  args
-  |> list.try_map(fn(arg) {
-    case arg {
-      Number(n) -> Ok(n)
-      _ -> Error("Expected number in subtraction")
+  case args {
+    [] -> Error("- requires at least one argument")
+    [Number(first), ..rest] -> {
+      rest
+      |> list.try_map(fn(arg) {
+        case arg {
+          Number(n) -> Ok(n)
+          _ -> Error("Expected number in subtraction")
+        }
+      })
+      |> result.map(fn(nums) {
+        case list.length(nums) {
+          // Unary minus (negate)
+          0 -> Number(0 - first)
+          // Subtraction from first argument
+          _ -> Number(list.fold(nums, first, fn(acc, n) { acc - n }))
+        }
+      })
     }
-  })
-  |> result.map(fn(nums) { Number(list.fold(nums, 0, fn(acc, n) { acc - n })) })
+    _ -> Error("Expected number as first argument to -")
+  }
 }
 
 fn multiply(args: List(Expr)) -> Result(Expr, String) {
@@ -57,14 +75,31 @@ fn multiply(args: List(Expr)) -> Result(Expr, String) {
 }
 
 fn divide(args: List(Expr)) -> Result(Expr, String) {
-  args
-  |> list.try_map(fn(arg) {
-    case arg {
-      Number(n) -> Ok(n)
-      _ -> Error("Expected number in division")
+  case args {
+    [] -> Error("/ requires at least one argument")
+    [Number(first), ..rest] -> {
+      rest
+      |> list.try_map(fn(arg) {
+        case arg {
+          Number(n) ->
+            case n {
+              0 -> Error("Division by zero")
+              _ -> Ok(n)
+            }
+          _ -> Error("Expected number in division")
+        }
+      })
+      |> result.map(fn(nums) {
+        case list.length(nums) {
+          // Unary division (reciprocal)
+          0 -> Number(1 / first)
+          // Division
+          _ -> Number(list.fold(nums, first, fn(acc, n) { acc / n }))
+        }
+      })
     }
-  })
-  |> result.map(fn(nums) { Number(list.fold(nums, 0, fn(acc, n) { acc / n })) })
+    _ -> Error("Expected number as first argument to /")
+  }
 }
 
 fn equals(args: List(Expr)) -> Result(Expr, String) {
@@ -129,5 +164,44 @@ fn cdr(args: List(Expr)) -> Result(Expr, String) {
     [List([])] -> Error("cdr: cannot get rest of empty list")
     [_] -> Error("cdr: argument must be a list")
     _ -> Error("cdr: expected exactly one argument")
+  }
+}
+
+fn cons(args: List(Expr)) -> Result(Expr, String) {
+  case args {
+    [head, List(tail)] -> {
+      Ok(List([head, ..tail]))
+    }
+    [_, _] -> Error("cons: second argument must be a list")
+    _ -> Error("cons: expected exactly two arguments")
+  }
+}
+
+fn length(args: List(Expr)) -> Result(Expr, String) {
+  case args {
+    [List(elements)] -> {
+      Ok(Number(list.length(elements)))
+    }
+    [_] -> Error("length: argunment must be a list")
+    _ -> Error("length: expected exactly one argument")
+  }
+}
+
+fn null(args: List(Expr)) -> Result(Expr, String) {
+  case args {
+    [List([])] -> Ok(Number(1))
+    // True if empty
+    [List(_)] -> Ok(Number(0))
+    // False if has elements
+    [_] -> Error("null?: argument must be a list")
+    _ -> Error("null?: expected exactly one argument")
+  }
+}
+
+fn not(args: List(Expr)) -> Result(Expr, String) {
+  case args {
+    [Number(0)] -> Ok(Number(1))
+    [_] -> Ok(Number(0))
+    _ -> Error("not: expected exactly one argument")
   }
 }
