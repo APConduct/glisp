@@ -1,6 +1,10 @@
+////// A module for managing environments that map variable names to expressions.
+
 import ast.{type Expr}
 import gleam/dict
 
+/// Environments are used during evaluation to keep track of variable bindings
+/// and their corresponding values.
 pub type Env =
   dict.Dict(String, Expr)
 

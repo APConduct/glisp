@@ -5,7 +5,6 @@ import gleam/int
 import gleam/list
 import gleam/result
 
-///
 /// This function takes a list of string tokens and attempts to parse them
 /// into a structured expression according to a simple Lisp-like syntax.
 /// It can recognize atoms, numbers, and nested lists.

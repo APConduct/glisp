@@ -4,6 +4,12 @@ import gleam/list
 import gleam/result
 
 /// Create a standard environment with built-in functions
+///
+/// This includes arithmetic operators (+, -, *, /), comparison operators (=, <, >),
+/// list manipulation functions (list, car, cdr, cons, length, null?), and logical
+/// operations (not).
+///
+/// Returns an `Env` that can be used as the basis for evaluating expressions.
 pub fn standard_env() -> Env {
   let env =
     environment.new()

@@ -9,6 +9,11 @@ import parser
 import stdlib
 import tokenizer
 
+/// Starts an interactive REPL (Read-Eval-Print Loop) for the GLisp interpreter.
+///
+/// This function initializes the standard environment, displays a welcome message,
+/// and allows users to input Lisp expressions for immediate evaluation.
+/// The loop continues until the user types 'exit'.
 pub fn main_repl() -> Nil {
   io.println("Welcome to GLisp - A Lisp interpreter in Gleam!")
   io.println("Type expressions to evaluate, or 'exit' to quit.")

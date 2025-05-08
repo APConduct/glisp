@@ -4,6 +4,12 @@ import gleam/list
 import gleam/result
 
 /// Evaluate an expression in the given environment
+///
+/// This function is the core of the interpreter, handling different expression types:
+/// - Numbers evaluate to themselves
+/// - Atoms are looked up in the environment
+/// - Built-in functions return themselves
+/// - Lists handle special forms (`define`, `if`) or function application
 pub fn eval(expr: Expr, env: Env) -> Result(Expr, String) {
   case expr {
     Number(_) -> Ok(expr)
